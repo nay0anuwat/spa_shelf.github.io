@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SPA SHELF D</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+      <style>
+        body {
+  background: #00b09b;
+  background: -webkit-linear-gradient(to right, #E6EBE0, #B2BCAA);
+  background: linear-gradient(to right, #CCF5AC,#88B7B5 );
+  min-height: 100vh;
+}
+
+.text-gray {
+  color: #aaa;
+}
+    </style>
+
+      <body onload="load()">
+
+
+
+    <div class="container py-5">
+
+        <div class="row text-center text-white mb-5">
+          <div class="col-lg-7 mx-auto">
+            <h1 >SHELF : D</h1>
+            <button id="loadFileButton" class="btn btn-primary" onclick="btn_click('data1')">แสดงผล</button>
+        </div>
+        </div>
+      
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <ul class="list-group shadow">
+      
+      
+       
+      <div class="data-container" id="data-container">
+    </div>
+      
+ 
+            </ul>
+      
+          </div>
+        </div>
+      </div>
+
+
+
+
+    <script>
+//btn id
+var btn1_name = "loadFileButton";
+
+// list1 = no list2 = name list3=img list4 = shelf list5 = shelf_slot
+const list1 = [];
+const list2 = [];
+const list3 = [];
+const list4 = [];
+const list5 = [];
+
+//btn path
+var path1 = "https://raw.githubusercontent.com/nay0anuwat/spa_shelf.github.io/main/datad.txt";
+
+
+function load(){
+    document.getElementById("loadFileButton").addEventListener("click", function () {
+        const fileUrl = path1;
+            fetch(fileUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+// document.getElementById("fileContent").textContent = data;
+
+                    const words = data.split('|');
+                    const dataContainer = document.getElementById('data-container');
+
+                    for (let i = 0; i < words.length; i++) {
+                        let str = words[i].split(',');
+
+                        list1.push(str[0]);
+                        list2.push(str[1]);
+                        list3.push(str[2]);
+                        list4.push(str[3]);
+                        list5.push(str[4]);
+                    }
+
+
+        for (let i = 0; i < words.length; i++) {
+        const item = document.createElement('div');
+        item.className = 'data-item';
+
+        item.innerHTML = `
+
+
+              <li class="list-group-item">
+          <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+            <div class="media-body order-2 order-lg-1">
+              <h5 class="mt-0 font-weight-bold mb-2"> ${list2[i]} </h5>
+              <p class="font-italic text-muted mb-0 small">ชั้น : ${list4[i]} ช่องที่ : ${list5[i]}</p>
+            </div>
+              <center>
+              </center>
+          </div>
+        </li>
+        `;
+
+        dataContainer.appendChild(item);
+    }
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+}
+
+    </script>
+</body>
+</html>
