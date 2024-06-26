@@ -65,6 +65,7 @@ const list2 = [];
 const list3 = [];
 const list4 = [];
 const list5 = [];
+const list6 = [];
 
 //btn path
 var path1 = "https://raw.githubusercontent.com/nay0anuwat/spa_shelf.github.io/main/datad.txt";
@@ -94,6 +95,7 @@ function load(){
                         list3.push(str[2]);
                         list4.push(str[3]);
                         list5.push(str[4]);
+                                      list6.push(str[5]);
                     }
 
 
@@ -108,6 +110,7 @@ function load(){
           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
             <div class="media-body order-2 order-lg-1">
               <h5 class="mt-0 font-weight-bold mb-2"> ${list2[i]} </h5>
+               <p>หมายเลข ${list6[i]}</p>
               <p class="font-italic text-muted mb-0 small">ชั้น : ${list4[i]} ช่องที่ : ${list5[i]}</p>
             </div>
               <center>
